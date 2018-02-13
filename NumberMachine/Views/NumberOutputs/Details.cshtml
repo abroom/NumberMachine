@@ -1,13 +1,13 @@
 ﻿@model NumberMachine.Models.NumberOutput
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = $"Output {Model.ID}";
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>NumberOutput</h4>
+    <h4>Output @Html.DisplayFor(model => model.ID)</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>

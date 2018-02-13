@@ -1,12 +1,12 @@
 ﻿@model NumberMachine.Models.NumberOutput
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = $"Edit Output {Model.ID}";
 }
 
 <h2>Edit</h2>
 
-<h4>NumberOutput</h4>
+<h4>Output @Html.DisplayFor(model => model.ID)</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">

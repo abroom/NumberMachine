@@ -1,13 +1,13 @@
 ﻿@model NumberMachine.Models.NumberInput
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = $"Input {Model.ID}";
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>NumberInput</h4>
+    <h4>Input @Html.DisplayFor(model => model.ID)</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>

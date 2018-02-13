@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<NumberMachine.Models.NumberInput>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Inputs";
 }
 
-<h2>Input Index</h2>
+<h2>Inputs</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,17 +13,23 @@
     <thead>
         <tr>
                 <th>
+                    @Html.DisplayNameFor(model => model.ID)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.N)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.M)
                 </th>
-            <th></th>
+                <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.N)
             </td>

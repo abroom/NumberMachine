@@ -1,14 +1,14 @@
 ﻿@model NumberMachine.Models.NumberOutput
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Delete Input {Model.ID}";
 }
 
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>NumberOutput</h4>
+    <h4>Output @Html.DisplayFor(model => model.ID)</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
