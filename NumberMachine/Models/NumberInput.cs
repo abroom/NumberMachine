@@ -8,7 +8,7 @@ namespace NumberMachine.Models
     public class NumberInput
     {
         public int ID { get; set; }
-        public int n { get; set; }
-        public int m { get; set; }
+        public int N { get; set; }
+        public int M { get; set; }
     }
 }
