@@ -48,7 +48,7 @@ namespace NumberMachine
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=NumberInputs}/{action=Index}/{id?}");
+                    template: "{controller=NumberOutputs}/{action=Index}/{id?}");
             });
         }
     }
