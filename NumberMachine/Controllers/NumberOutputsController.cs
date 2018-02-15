@@ -56,10 +56,26 @@ namespace NumberMachine.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,InputID,Operation,Output")] NumberOutput numberOutput)
+        public async Task<IActionResult> Create([Bind("ID,InputID,Operation")] NumberOutput numberOutput)
         {
             if (ModelState.IsValid)
             {
+                // If operation is not one of the values in the dropdown, set it to 43 (addition)
+                if (numberOutput.Operation != 43 && numberOutput.Operation != 45 && numberOutput.Operation != 215 && numberOutput.Operation != 247)
+                {
+                    numberOutput.Operation = 43;
+                }
+
+                // Get input N and M
+                NumberInput input = _context.NumberInput.Find(numberOutput.InputID);
+
+                // Calculate Output
+                if (numberOutput.Operation == 43) numberOutput.Output = input.N + input.M;
+                else if (numberOutput.Operation == 45) numberOutput.Output = input.N - input.M;
+                else if (numberOutput.Operation == 215) numberOutput.Output = input.N * input.M;
+                else if (input.M != 0) numberOutput.Output = input.N / input.M;
+                else numberOutput.Output = int.MaxValue;
+
                 _context.Add(numberOutput);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -90,7 +106,7 @@ namespace NumberMachine.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,InputID,Operation,Output")] NumberOutput numberOutput)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,InputID,Operation")] NumberOutput numberOutput)
         {
             if (id != numberOutput.ID)
             {
@@ -101,6 +117,22 @@ namespace NumberMachine.Controllers
             {
                 try
                 {
+                    // If operation is not one of the values in the dropdown, set it to 43 (addition)
+                    if (numberOutput.Operation != 43 && numberOutput.Operation != 45 && numberOutput.Operation != 215 && numberOutput.Operation != 247)
+                    {
+                        numberOutput.Operation = 43;
+                    }
+
+                    // Get input N and M
+                    NumberInput input = _context.NumberInput.Find(numberOutput.InputID);
+
+                    // Calculate Output
+                    if (numberOutput.Operation == 43) numberOutput.Output = input.N + input.M;
+                    else if (numberOutput.Operation == 45) numberOutput.Output = input.N - input.M;
+                    else if (numberOutput.Operation == 215) numberOutput.Output = input.N * input.M;
+                    else if (input.M != 0) numberOutput.Output = input.N / input.M;
+                    else numberOutput.Output = int.MaxValue;
+
                     _context.Update(numberOutput);
                     await _context.SaveChangesAsync();
                 }

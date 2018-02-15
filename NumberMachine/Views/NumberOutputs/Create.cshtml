@@ -14,17 +14,21 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="InputID" class="control-label"></label>
-                <select asp-for="InputID" class ="form-control" asp-items="ViewBag.InputID"></select>
+                <select asp-for="InputID" class="form-control" asp-items="ViewBag.InputID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Operation" class="control-label"></label>
-                <input asp-for="Operation" class="form-control" />
+                @Html.DropDownListFor(
+                    m => m.Operation, new List<SelectListItem>
+                    {
+                        new SelectListItem{Text=((char)43).ToString(), Value="43"},
+                        new SelectListItem{Text=((char)45).ToString(), Value="45"},
+                        new SelectListItem{Text=((char)215).ToString(), Value="215"},
+                        new SelectListItem{Text=((char)247).ToString(), Value="247"}
+                    },
+                    "Please select"
+                )
                 <span asp-validation-for="Operation" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Output" class="control-label"></label>
-                <input asp-for="Output" class="form-control" />
-                <span asp-validation-for="Output" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

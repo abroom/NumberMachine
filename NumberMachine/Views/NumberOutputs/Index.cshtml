@@ -12,14 +12,17 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Operation)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Output)
-                </th>
             <th>
-                @Html.DisplayNameFor(model => model.Input)
+                @Html.DisplayNameFor(model => model.Output)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Input.N)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Operation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Input.M)
             </th>
             <th></th>
         </tr>
@@ -28,13 +31,25 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Operation)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Output)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Input.ID)
+                @Html.DisplayFor(modelItem => item.Input.N)
+            </td>
+            <td>
+               @Html.DropDownListFor(
+                   m => item.Operation, new List<SelectListItem>
+                   {
+                        new SelectListItem{Text=((char)43).ToString(), Value="43"},
+                        new SelectListItem{Text=((char)45).ToString(), Value="45"},
+                        new SelectListItem{Text=((char)215).ToString(), Value="215"},
+                        new SelectListItem{Text=((char)247).ToString(), Value="247"}
+                   },
+                   new { disabled = "disabled" }
+               )
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Input.M)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

@@ -21,7 +21,16 @@
             @Html.DisplayNameFor(model => model.Output)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Output)
+            @Html.DropDownListFor(
+               m => m.Operation, new List<SelectListItem>
+               {
+                    new SelectListItem{Text=((char)43).ToString(), Value="43"},
+                    new SelectListItem{Text=((char)45).ToString(), Value="45"},
+                    new SelectListItem{Text=((char)215).ToString(), Value="215"},
+                    new SelectListItem{Text=((char)247).ToString(), Value="247"}
+               },
+               new { disabled = "disabled" }
+            )
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Input)
